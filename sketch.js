@@ -2,7 +2,7 @@ var cycleR, cycleM, cycleU;
 var ground, invisibleGround, groundImage;
 
 var cloudsGroup, cloudImage;
-var obstaclesGroup, obstacle1, obstacle2, obstacle3, obstacle4, obstacle5, obstacle6;
+var bricksGroup, brick1, brick2, brick3/*, brick4, brick5, brick6*/;
 var backgroundI;
 
 var score = 0;
@@ -20,12 +20,12 @@ function preload() {
 
   //cloudImage = loadImage("cloud.png");
 
-  obstacle1 = loadImage("obstacle1.png");
-  obstacle2 = loadImage("obstacle2.png");
-  obstacle3 = loadImage("obstacle3.png");
-  obstacle4 = loadImage("obstacle4.png");
-  obstacle5 = loadImage("obstacle5.png");
-  obstacle6 = loadImage("obstacle6.png");
+  brick1 = loadImage("brick1.png");
+  brick2 = loadImage("brick2.png");
+  brick3 = loadImage("brick3.png");
+  /*brick4 = loadImage("brick4.png");
+  brick5 = loadImage("brick5.png");
+  brick6 = loadImage("brick6.png");*/
 
   backgroundI = loadImage("city.png");
 
@@ -48,7 +48,7 @@ function setup() {
   invisibleGround.visible = false;
 
   /*cloudsGroup = new Group();
-  obstaclesGroup = new Group();
+  bricksGroup = new Group();
 
   score = 0;
   gameOver = createSprite(300, 100, 10, 10);
@@ -81,9 +81,10 @@ function draw() {
     if (ground.x < 70) {
       ground.x = ground.width / 2 + 900;
     }
+    spawnBrick();
     //spawnClouds();
-    //spawnObstacles();
-    /*if (obstaclesGroup.isTouching(cycleR)) {
+    //spawnbricks();
+    /*if (bricksGroup.isTouching(cycleR)) {
 
       gameState = END;
 
@@ -95,10 +96,10 @@ function draw() {
     restart.visible = true;
     ground.velocityX = 0;
     cycleR.velocityY = 0;
-    obstaclesGroup.setVelocityXEach(0);
+    bricksGroup.setVelocityXEach(0);
     cloudsGroup.setVelocityXEach(0);
     cycleR.changeAnimation("co", cycleR_collided);
-    obstaclesGroup.setLifetimeEach(-1);
+    bricksGroup.setLifetimeEach(-1);
     cloudsGroup.setLifetimeEach(-1);
 
   }
@@ -133,41 +134,41 @@ function draw() {
 
 }
 
-function spawnObstacles() {
+function spawnbricks() {
   if (frameCount % 60 === 0) {
-    var obstacle = createSprite(600, 165, 10, 40);
-    obstacle.velocityX = -4;
+    var brick = createSprite(600, 165, 10, 40);
+    brick.velocityX = -4;
 
-    //generate random obstacles
+    //generate random bricks
     var rand = Math.round(random(1, 6));
     switch (rand) {
       case 1:
-        obstacle.addImage(obstacle1);
+        brick.addImage(brick1);
         break;
       case 2:
-        obstacle.addImage(obstacle2);
+        brick.addImage(brick2);
         break;
       case 3:
-        obstacle.addImage(obstacle3);
+        brick.addImage(brick3);
         break;
       case 4:
-        obstacle.addImage(obstacle4);
+        brick.addImage(brick4);
         break;
       case 5:
-        obstacle.addImage(obstacle5);
+        brick.addImage(brick5);
         break;
       case 6:
-        obstacle.addImage(obstacle6);
+        brick.addImage(brick6);
         break;
       default:
         break;
     }
 
-    //assign scale and lifetime to the obstacle           
-    obstacle.scale = 0.5;
-    obstacle.lifetime = 300;
-    //add each obstacle to the group
-    obstaclesGroup.add(obstacle);
+    //assign scale and lifetime to the brick           
+    brick.scale = 0.5;
+    brick.lifetime = 300;
+    //add each brick to the group
+    bricksGroup.add(brick);
   }
 }
 
@@ -177,7 +178,7 @@ function reset(){
   gameOver.visible = false;
   restart.visible = false;
   
-  obstaclesGroup.destroyEach();
+  bricksGroup.destroyEach();
   cloudsGroup.destroyEach();
   
   cycleR.changeAnimation("running", cycleR_running);
@@ -185,3 +186,44 @@ function reset(){
   score = 0;
   
 }*/
+
+function spawnBrick()
+{
+
+  if (frameCount % 60 === 0) {
+    var brick = createSprite(width+50, 498, 10, 10);
+    brick.velocityX = -4;
+
+    //generate random bricks
+    var rand = Math.round(random(1, 3));
+    switch (rand) {
+      case 1:
+        brick.addImage(brick1);
+        break;
+      case 2:
+        brick.addImage(brick2);
+        break;
+      case 3:
+        brick.addImage(brick3);
+        break;
+      /*case 4:
+        brick.addImage(brick4);
+        break;
+      case 5:
+        brick.addImage(brick5);
+        break;
+      case 6:
+        brick.addImage(brick6);
+        break;*/
+      default:
+        break;
+    }
+
+    //assign scale and lifetime to the brick           
+    brick.scale = 0.1;
+    //brick.lifetime = 300;
+    //add each brick to the group
+    //bricksGroup.add(brick);
+  }
+
+}
