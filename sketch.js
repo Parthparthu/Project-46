@@ -218,9 +218,10 @@ function spawnBrick()
       default:
         break;
     }
+    console.log(rand);
 
     //assign scale and lifetime to the brick           
-    brick.scale = 0.1;
+    brick.scale = 0.2;
     //brick.lifetime = 300;
     //add each brick to the group
     //bricksGroup.add(brick);
