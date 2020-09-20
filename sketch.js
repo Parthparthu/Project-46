@@ -82,6 +82,7 @@ function draw() {
       ground.x = ground.width / 2 + 900;
     }
     spawnBrick();
+    //console.log(cycleR.y);
     //spawnClouds();
     //spawnbricks();
     /*if (bricksGroup.isTouching(cycleR)) {
@@ -191,7 +192,8 @@ function spawnBrick()
 {
 
   if (frameCount % 60 === 0) {
-    var brick = createSprite(width+50, 498, 10, 10);
+    var brick = createSprite(width+50, 630, 10, 10);
+    brick.collide(invisibleGround);
     brick.velocityX = -4;
 
     //generate random bricks
@@ -221,7 +223,7 @@ function spawnBrick()
     console.log(rand);
 
     //assign scale and lifetime to the brick           
-    brick.scale = 0.2;
+    brick.scale = 0.1;
     //brick.lifetime = 300;
     //add each brick to the group
     //bricksGroup.add(brick);
