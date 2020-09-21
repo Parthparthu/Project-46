@@ -39,10 +39,10 @@ function setup() {
   ground.x = ground.width / 2;
   ground.scale = 4;
 
-  cycleR = createSprite(width/2-550, height/2+200, 1, 1);
+  cycleR = createSprite(width/2-557, 690, 1, 1);
   cycleR.addAnimation("running", cycleM);
   cycleR.addAnimation("up", cycleU);
-  cycleR.scale = 0.1;
+  cycleR.scale = 0.06;
 
   invisibleGround = createSprite(width/2, height, displayWidth-120, 10);
   invisibleGround.visible = false;
@@ -72,11 +72,35 @@ function draw() {
 
     //score = score + Math.round(getFrameRate() / 60);
 
-    if ((keyDown("space")) && (cycleR.y >= 161)) {
-      cycleR.velocityY = -12;
+    if (keyDown("UP_ARROW"))
+    {
+
+      cycleR.y = 580;
+
     }
 
-    cycleR.velocityY = cycleR.velocityY + 0.8
+    if((keyDown("UP_ARROW")) && (cycleR.y === 580) && (keyDown(32)))
+    {
+
+      cycleR.y = 510;
+
+    }
+
+    if((keyDown("DOWN_ARROW")) && (cycleR.y === 510))
+    {
+
+      cycleR.y = 600;
+
+    }
+
+    if((keyDown("DOWN_ARROW")) && (cycleR.y === 580) && (keyDown(32)))
+    {
+
+      cycleR.y = 690;
+
+    }
+
+    //cycleR.velocityY = cycleR.velocityY + 0.8
 
     if (ground.x < 70) {
       ground.x = ground.width / 2 + 900;
@@ -191,14 +215,14 @@ function reset(){
 function spawnBrick()
 {
 
-  if (frameCount % 60 === 0) {
+  if (frameCount % 130 === 0) {
     var brick = createSprite(width+50, 630, 10, 10);
     brick.collide(invisibleGround);
     brick.velocityX = -4;
 
     //generate random bricks
-    var rand = Math.round(random(1, 3));
-    switch (rand) {
+    var rand1 = Math.round(random(1, 3));
+    switch (rand1) {
       case 1:
         brick.addImage(brick1);
         break;
@@ -220,7 +244,9 @@ function spawnBrick()
       default:
         break;
     }
-    console.log(rand);
+
+    var rand2 = Math.round(random(510, 630));
+    brick.y = rand2;
 
     //assign scale and lifetime to the brick           
     brick.scale = 0.1;
