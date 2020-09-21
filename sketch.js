@@ -75,11 +75,11 @@ function draw() {
     if (keyDown("UP_ARROW"))
     {
 
-      cycleR.y = 580;
+      cycleR.y = 600;
 
     }
 
-    if((keyDown("UP_ARROW")) && (cycleR.y === 580) && (keyDown(32)))
+    if((keyDown("UP_ARROW")) && (cycleR.y === 600) && (keyDown(32)))
     {
 
       cycleR.y = 510;
@@ -93,7 +93,7 @@ function draw() {
 
     }
 
-    if((keyDown("DOWN_ARROW")) && (cycleR.y === 580) && (keyDown(32)))
+    if((keyDown("DOWN_ARROW")) && (cycleR.y === 600) && (keyDown(32)))
     {
 
       cycleR.y = 690;
@@ -105,7 +105,8 @@ function draw() {
     if (ground.x < 70) {
       ground.x = ground.width / 2 + 900;
     }
-    spawnBrick();
+    spawnBrick1();
+    spawnBrick2();
     //console.log(cycleR.y);
     //spawnClouds();
     //spawnbricks();
@@ -212,25 +213,25 @@ function reset(){
   
 }*/
 
-function spawnBrick()
+function spawnBrick1()
 {
 
   if (frameCount % 130 === 0) {
-    var brick = createSprite(width+50, 630, 10, 10);
-    brick.collide(invisibleGround);
-    brick.velocityX = -4;
+    var brick1 = createSprite(width+50, 690, 10, 10);
+    brick1.collide(invisibleGround);
+    brick1.velocityX = -2;
 
     //generate random bricks
     var rand1 = Math.round(random(1, 3));
     switch (rand1) {
       case 1:
-        brick.addImage(brick1);
+        brick1.addImage(brick1);
         break;
       case 2:
-        brick.addImage(brick2);
+        brick1.addImage(brick2);
         break;
       case 3:
-        brick.addImage(brick3);
+        brick1.addImage(brick3);
         break;
       /*case 4:
         brick.addImage(brick4);
@@ -245,11 +246,50 @@ function spawnBrick()
         break;
     }
 
-    var rand2 = Math.round(random(510, 630));
-    brick.y = rand2;
+    //assign scale and lifetime to the brick           
+    brick1.scale = 0.1;
+    //brick.lifetime = 300;
+    //add each brick to the group
+    //bricksGroup.add(brick);
+  }
+
+}
+
+function spawnBrick2()
+{
+
+  if (frameCount % 130 === 0) {
+    var brick2 = createSprite(width+50, 600, 10, 10);
+    brick2.collide(invisibleGround);
+    brick2.velocityX = -2;
+
+    //generate random bricks
+    var rand1 = Math.round(random(1, 3));
+    switch (rand1) {
+      case 1:
+        brick2.addImage(brick1);
+        break;
+      case 2:
+        brick2.addImage(brick2);
+        break;
+      case 3:
+        brick2.addImage(brick3);
+        break;
+      /*case 4:
+        brick.addImage(brick4);
+        break;
+      case 5:
+        brick.addImage(brick5);
+        break;
+      case 6:
+        brick.addImage(brick6);
+        break;*/
+      default:
+        break;
+    }
 
     //assign scale and lifetime to the brick           
-    brick.scale = 0.1;
+    brick2.scale = 0.1;
     //brick.lifetime = 300;
     //add each brick to the group
     //bricksGroup.add(brick);
