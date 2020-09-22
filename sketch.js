@@ -2,7 +2,7 @@ var cycleR, cycleM, cycleU;
 var ground, invisibleGround, groundImage;
 
 var cloudsGroup, cloudImage;
-var bricksGroup, brick1, brick2, brick3/*, brick4, brick5, brick6*/;
+var bricksGroup, brick1P, brick2P, brick3/*, brick4, brick5, brick6*/;
 var backgroundI;
 
 var score = 0;
@@ -20,8 +20,8 @@ function preload() {
 
   //cloudImage = loadImage("cloud.png");
 
-  brick1 = loadImage("brick1.png");
-  brick2 = loadImage("brick2.png");
+  brick1P = loadImage("brick1.png");
+  brick2P = loadImage("brick2.png");
   brick3 = loadImage("brick3.png");
   /*brick4 = loadImage("brick4.png");
   brick5 = loadImage("brick5.png");
@@ -72,7 +72,7 @@ function draw() {
 
     //score = score + Math.round(getFrameRate() / 60);
 
-    if (keyDown("UP_ARROW"))
+    /*if (keyDown("UP_ARROW"))
     {
 
       cycleR.y = 600;
@@ -98,6 +98,20 @@ function draw() {
 
       cycleR.y = 690;
 
+    }*/
+
+    if(keyWentDown("UP_ARROW") && (cycleR.y >= 560))
+    {
+
+      cycleR.y = cycleR.y - 65;
+
+    }
+
+    if(keyWentDown("DOWN_ARROW") && (cycleR.y <= 650))
+    {
+
+      cycleR.y = cycleR.y + 65;
+
     }
 
     //cycleR.velocityY = cycleR.velocityY + 0.8
@@ -107,7 +121,7 @@ function draw() {
     }
     spawnBrick1();
     spawnBrick2();
-    //console.log(cycleR.y);
+    //console.log(frameCount);
     //spawnClouds();
     //spawnbricks();
     /*if (bricksGroup.isTouching(cycleR)) {
@@ -225,10 +239,10 @@ function spawnBrick1()
     var rand1 = Math.round(random(1, 3));
     switch (rand1) {
       case 1:
-        brick1.addImage(brick1);
+        brick1.addImage(brick1P);
         break;
       case 2:
-        brick1.addImage(brick2);
+        brick1.addImage(brick2P);
         break;
       case 3:
         brick1.addImage(brick3);
@@ -248,7 +262,7 @@ function spawnBrick1()
 
     //assign scale and lifetime to the brick           
     brick1.scale = 0.1;
-    //brick.lifetime = 300;
+    brick1.lifetime = width/2;
     //add each brick to the group
     //bricksGroup.add(brick);
   }
@@ -267,10 +281,10 @@ function spawnBrick2()
     var rand1 = Math.round(random(1, 3));
     switch (rand1) {
       case 1:
-        brick2.addImage(brick1);
+        brick2.addImage(brick1P);
         break;
       case 2:
-        brick2.addImage(brick2);
+        brick2.addImage(brick2P);
         break;
       case 3:
         brick2.addImage(brick3);
@@ -278,19 +292,19 @@ function spawnBrick2()
       /*case 4:
         brick.addImage(brick4);
         break;
-      case 5:
+        case 5:
         brick.addImage(brick5);
         break;
-      case 6:
+        case 6:
         brick.addImage(brick6);
         break;*/
-      default:
+        default:
         break;
     }
 
     //assign scale and lifetime to the brick           
     brick2.scale = 0.1;
-    //brick.lifetime = 300;
+    brick2.lifetime = width/2;
     //add each brick to the group
     //bricksGroup.add(brick);
   }
